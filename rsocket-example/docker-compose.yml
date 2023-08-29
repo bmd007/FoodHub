@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  rsocket-example:
+    container_name: rsocket-example
+    hostname: rsocket-example
+    image: bmd007/rsocket-example
+    ports:
+      - "8888:8888"
+      - "8080:8080"
