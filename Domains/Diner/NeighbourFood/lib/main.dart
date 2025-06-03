@@ -5,6 +5,8 @@ void main() {
 }
 
 class NeighborEatsApp extends StatelessWidget {
+  const NeighborEatsApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,28 +30,25 @@ class FoodItem {
   final String cookedTime;
   final String pickupLocation;
   final String pickupUntil;
-  final double distance;
-  final String status;
 
-  FoodItem({
-    required this.title,
-    required this.description,
-    required this.imageUrl,
-    required this.price,
-    required this.cookedTime,
-    required this.pickupLocation,
-    required this.pickupUntil,
-    required this.distance,
-    this.status = 'Fresh',
-  });
+  FoodItem(
+      {required this.title,
+      required this.description,
+      required this.imageUrl,
+      required this.price,
+      required this.cookedTime,
+      required this.pickupLocation,
+      required this.pickupUntil});
 }
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   String _selectedFilter = 'All';
 
@@ -63,40 +62,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<FoodItem> _foodItems = [
     FoodItem(
-      title: 'Homemade Margherita Pizza',
+      title: 'Margherita Pizza',
       description:
           'Fresh mozzarella, basil, tomato sauce on crispy dough. Made with organic ingredients!',
       imageUrl:
-          'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+          'https://bakerstable.net/wp-content/uploads/2021/03/Margherita-pizza-2021-3-e1614881538289.jpg',
       price: 8.0,
       cookedTime: '1h ago',
       pickupLocation: 'Södermalm',
       pickupUntil: 'Until 8 PM',
-      distance: 0.3,
     ),
     FoodItem(
       title: 'Authentic Thai Green Curry',
       description:
           'Coconut milk, Thai basil, vegetables, jasmine rice. Spicy and aromatic!',
       imageUrl:
-          'https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+          'https://vaya.in/recipes/wp-content/uploads/2018/12/Authentic-Thai-Green-Curry.jpg',
       price: 12.0,
       cookedTime: '30min ago',
       pickupLocation: 'Gamla Stan',
       pickupUntil: 'Until 9 PM',
-      distance: 0.5,
     ),
     FoodItem(
       title: 'Fluffy Blueberry Pancakes',
       description:
           'Stack of 6 pancakes with fresh blueberries, maple syrup, and butter',
       imageUrl:
-          'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+          'https://images.immediate.co.uk/production/volatile/sites/30/2013/05/spaghetti-carbonara-382837d.jpg?quality=90&webp=true&resize=600,545',
       price: 6.0,
       cookedTime: '2h ago',
       pickupLocation: 'Norrmalm',
       pickupUntil: 'Until 7 PM',
-      distance: 0.8,
     ),
     FoodItem(
       title: 'Fresh Caesar Salad',
@@ -108,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
       cookedTime: '45min ago',
       pickupLocation: 'Östermalm',
       pickupUntil: 'Until 6 PM',
-      distance: 1.2,
     ),
     FoodItem(
       title: 'Gourmet Beef Burger',
@@ -120,7 +115,6 @@ class _HomeScreenState extends State<HomeScreen> {
       cookedTime: '1.5h ago',
       pickupLocation: 'Vasastan',
       pickupUntil: 'Until 8:30 PM',
-      distance: 0.7,
     ),
   ];
 
@@ -182,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'Fresh food from your neighbors',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha: 0.9),
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),
@@ -191,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.15),
+                      color: Colors.white.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Row(
@@ -231,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha: 0.1),
                 blurRadius: 25,
                 offset: Offset(0, 8),
               ),
@@ -258,7 +252,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildFilterChips() {
-    return Container(
+    return SizedBox(
       height: 50,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -302,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 20,
             offset: Offset(0, 4),
           ),
@@ -340,7 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      item.status,
+                      'FRESH',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 11,
@@ -355,11 +349,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.7),
+                      color: Colors.black.withValues(alpha: 0.7),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      '${item.distance} km',
+                      '13 km',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,
@@ -464,8 +458,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return FloatingActionButton(
       onPressed: () => _showMapView(),
       backgroundColor: Colors.white,
-      child: Icon(Icons.map, color: Color(0xFF667eea)),
       elevation: 8,
+      child: Icon(Icons.map, color: Color(0xFF667eea)),
     );
   }
 
@@ -524,7 +518,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class FoodDetailModal extends StatelessWidget {
   final FoodItem item;
 
-  const FoodDetailModal({Key? key, required this.item}) : super(key: key);
+  const FoodDetailModal({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
